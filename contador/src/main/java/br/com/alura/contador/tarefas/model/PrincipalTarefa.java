@@ -1,11 +1,11 @@
 package br.com.alura.contador.tarefas.model;
 
+import java.io.File;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.expression.TargetedAccessor;
 
-import br.com.alura.contador.model.ContadorApplication;
 import br.com.alura.contador.tarefas.service.ConversorJacksonParaJson;
 import br.com.alura.contador.tarefas.service.ConversorJacksonParaObjeto;
 import br.com.alura.contador.tarefas.service.Documento;
@@ -14,15 +14,18 @@ import br.com.alura.contador.tarefas.service.Documento;
 public class PrincipalTarefa implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(ContadorApplication.class, args);
+        SpringApplication.run(PrincipalTarefa.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
         Tarefa tarefa = new Tarefa(true, "codar em java e spring", "vinicius");
+
         ConversorJacksonParaJson conversorJackson = new ConversorJacksonParaJson();
         ConversorJacksonParaObjeto conversorJacksonParaObjeto = new ConversorJacksonParaObjeto();
+        
         var documento = new Documento();
+        File arquivo = new File("tarefa.json");
 
         String ObjetoParaJson = conversorJackson.obterDados(tarefa);
         documento.documentar(ObjetoParaJson);
@@ -30,8 +33,9 @@ public class PrincipalTarefa implements CommandLineRunner {
         System.out.println("Objeto Java para Json: ");
         System.out.println(ObjetoParaJson);
 
-        conversorJacksonParaObjeto.ConversorJacksonParaObjeto(documento);
         System.out.println("File Json para Objeto Java: ");
-        System.out.println();
+        tarefa = conversorJacksonParaObjeto.ConversorJacksonParaObjeto(arquivo);
+        System.out.println(tarefa);
+
     }
 }

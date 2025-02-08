@@ -16,6 +16,9 @@ public class Tarefa {
         this.pessoaResponsavel = pessoaResponsavel;
     }
 
+    public Tarefa() {
+    }
+
     public String getDescricao() {
         return descricao;
     }
