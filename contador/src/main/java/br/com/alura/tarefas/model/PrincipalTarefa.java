@@ -1,4 +1,4 @@
-package br.com.alura.contador.tarefas.model;
+package br.com.alura.tarefas.model;
 
 import java.io.File;
 
@@ -6,9 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.alura.contador.tarefas.model.Tarefa;
 import br.com.alura.contador.tarefas.service.ConversorJacksonParaJson;
 import br.com.alura.contador.tarefas.service.ConversorJacksonParaObjeto;
-import br.com.alura.contador.tarefas.service.Documento;
 
 @SpringBootApplication
 public class PrincipalTarefa implements CommandLineRunner {
@@ -24,7 +24,7 @@ public class PrincipalTarefa implements CommandLineRunner {
         ConversorJacksonParaJson conversorJackson = new ConversorJacksonParaJson();
         ConversorJacksonParaObjeto conversorJacksonParaObjeto = new ConversorJacksonParaObjeto();
         
-        var documento = new Documento();
+        var documento = new br.com.alura.contador.tarefas.service.Documento();
         File arquivo = new File("tarefa.json");
 
         String ObjetoParaJson = conversorJackson.obterDados(tarefa);
